@@ -1045,7 +1045,7 @@ component output="false" accessors="true" {
       required string MatchName,
       string TrackOpens
   ){
-    var sBody = stripServerTokenAndClean( arguments );
+    var sBody = serializeJSON( stripServerTokenAndClean( arguments ) );
     return makeServerRequest( endpoint='triggers/tags', serverToken=arguments.serverToken, method='POST', body=sBody );
   }
 
@@ -1076,7 +1076,7 @@ component output="false" accessors="true" {
   ){
     var sParams = structCopy( arguments );
     structDelete( sParams, 'triggerId' );
-    var sBody = stripServerTokenAndClean( sParams );
+    var sBody = serializeJSON( stripServerTokenAndClean( sParams ) );
     return makeServerRequest( endpoint='triggers/tags/#arguments.triggerId#', serverToken=arguments.serverToken, method='PUT', body=sBody );
   }
 
@@ -1121,7 +1121,7 @@ component output="false" accessors="true" {
       required string serverToken,
       required string Rule
   ){
-    var sBody = stripServerTokenAndClean( arguments );
+    var sBody = serializeJSON( stripServerTokenAndClean( arguments ) );
     return makeServerRequest( endpoint='triggers/inboundrules', serverToken=arguments.serverToken, method='POST', body=sBody );
   }
 
